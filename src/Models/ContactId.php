@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Antenna\TeamleaderSDK\Models;
 
-final class CompanyId extends Id
+final class ContactId extends Id
 {
     protected static function getPrefix() : string
     {
-        return 'CompanyId';
+        return 'ContactId';
     }
 }

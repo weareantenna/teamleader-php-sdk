@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Antenna\TeamleaderSDK;
 
 use Antenna\TeamleaderSDK\Resources\Companies;
+use Antenna\TeamleaderSDK\Resources\Contacts;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use function array_merge;
@@ -80,6 +81,11 @@ class Teamleader
     public function companies() : Companies
     {
         return new Companies($this);
+    }
+
+    public function contacts() : Contacts
+    {
+        return new Contacts($this);
     }
 
     public function getAuthorizationUrl(string $redirectUri, ?string $state = null) : string

@@ -6,5 +6,7 @@ Under active development.
 
 - [ ] Error handling
 - [ ] Implement all the api endpoints
+    - [x] companies.list
     - [x] companies.addNote
+    - [x] contacts.list
 - [ ] Tests
