@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace Antenna\TeamleaderSDK\Resources;
 
-use Antenna\TeamleaderSDK\Connection;
 use Antenna\TeamleaderSDK\Models\Company;
 use Antenna\TeamleaderSDK\Models\CompanyId;
+use Antenna\TeamleaderSDK\Teamleader;
 use function json_decode;
 use function time;
 
 class Companies
 {
-    /** @var Connection */
-    private $connection;
+    /** @var Teamleader */
+    private $teamleader;
 
-    public function __construct(Connection $connection)
+    public function __construct(Teamleader $teamleader)
     {
-        $this->connection = $connection;
+        $this->teamleader = $teamleader;
     }
 
     public function getById(CompanyId $id) : Company
     {
-        $response = $this->connection->makeV2Request('companies.info', ['id' => $id->toV2()]);
+        $response = $this->teamleader->makeV2Request('companies.info', ['id' => $id->toV2()]);
 
         $json = json_decode((string) $response->getBody(), true);
 
@@ -34,7 +34,7 @@ class Companies
      */
     public function list() : array
     {
-        $response = $this->connection->makeV2Request('companies.list');
+        $response = $this->teamleader->makeV2Request('companies.list');
 
         $json = json_decode((string) $response->getBody(), true);
 
@@ -48,7 +48,7 @@ class Companies
 
     public function addNote(CompanyId $companyId, string $title) : void
     {
-        $this->connection->makeV1Request(
+        $this->teamleader->makeV1Request(
             'addNote.php',
             [
                 'object_type' => 'company',
