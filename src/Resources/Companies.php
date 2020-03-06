@@ -30,13 +30,11 @@ class Companies
     }
 
     /**
-     * @param array<mixed> $filter
-     *
      * @return Company[]
      */
-    public function list(array $filter = []) : array
+    public function list() : array
     {
-        $response = $this->connection->makeV2Request('companies.list', ['filter' => $filter]);
+        $response = $this->connection->makeV2Request('companies.list');
 
         $json = json_decode((string) $response->getBody(), true);
 

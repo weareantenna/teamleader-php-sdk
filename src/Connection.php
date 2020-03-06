@@ -44,7 +44,7 @@ final class Connection
     /**
      * @param array<mixed> $body
      */
-    public function makeV1Request(string $uri, array $body) : ResponseInterface
+    public function makeV1Request(string $uri, array $body = []) : ResponseInterface
     {
          $formParams = array_merge(
              [
@@ -60,7 +60,7 @@ final class Connection
     /**
      * @param array<mixed> $body
      */
-    public function makeV2Request(string $uri, array $body) : ResponseInterface
+    public function makeV2Request(string $uri, array $body = []) : ResponseInterface
     {
          return $this->client->request('POST', 'https://api.teamleader.eu/' . $uri, [
              'json' => $body,
