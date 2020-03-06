@@ -46,6 +46,53 @@ class Contacts
         return $contacts;
     }
 
+    /**
+     * @param array<mixed> $emails
+     * @param array<mixed> $telephones
+     * @param array<mixed> $addresses
+     * @param array<mixed> $tags
+     * @param array<mixed> $custom_fields
+     */
+    public function add(
+        string $lastName,
+        ?string $first_name = null,
+        ?array $emails = [],
+        ?string $salutation = null,
+        ?array $telephones = [],
+        ?string $website = null,
+        ?array $addresses = [],
+        ?string $language = null,
+        ?string $gender = null,
+        ?string $birthdate = null,
+        ?string $iban = null,
+        ?string $bic = null,
+        ?string $national_identification_number = null,
+        ?string $remarks = null,
+        ?array $tags = [],
+        ?array $custom_fields = [],
+        ?bool $marketing_mails_consent = false
+    ) : void {
+        $response = $this->connection->makeV2Request('contacts.add', [
+            'last_name' => $lastName,
+            'first_name' => $first_name,
+            'emails' => $emails,
+            'salutation' => $salutation,
+            'telephones' => $telephones,
+            'website' => $website,
+            'addresses' => $addresses,
+            'language' => $language,
+            'gender' => $gender,
+            'birthdate' => $birthdate,
+            'iban' => $iban,
+            'bic' => $bic,
+            'national_identification_number' => $national_identification_number,
+            'remarks' => $remarks,
+            'tags' => $tags,
+            'custom_fields' => $custom_fields,
+            'marketing_mails_consent' => $marketing_mails_consent
+        ]);
+    }
+
     public function addNote(ContactId $contactId, string $title) : void
     {
         $this->connection->makeV1Request(
