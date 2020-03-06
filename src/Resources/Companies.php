@@ -52,6 +52,51 @@ class Companies
         return $companies;
     }
 
+    /**
+     * @param array<mixed> $emails
+     * @param array<mixed> $telephones
+     * @param array<mixed> $addresses
+     * @param array<mixed> $tags
+     * @param array<mixed> $customFields
+     */
+    public function add(
+        string $name,
+        ?string $businessTypeId = null,
+        ?string $vatNumber = null,
+        ?string $nationalIdentificationNumber = null,
+        ?array $emails = [],
+        ?array $telephones = [],
+        ?string $website = null,
+        ?array $addresses = [],
+        ?string $iban = null,
+        ?string $bic = null,
+        ?string $language = null,
+        ?string $responsibleUserId = null,
+        ?string $remarks = null,
+        ?array $tags = [],
+        ?array $customFields = [],
+        bool $marketingMailsConsent = false
+    ) : void {
+        $response = $this->connection->makeV2Request('companies.add', [
+            'name' => $name,
+            'business_type_id' => $businessTypeId,
+            'vat_number' => $vatNumber,
+            'national_identification_number' => $nationalIdentificationNumber,
+            'emails' => $emails,
+            'telephones' => $telephones,
+            'website' => $website,
+            'addresses' => $addresses,
+            'iban' => $iban,
+            'bic' => $bic,
+            'language' => $language,
+            'responsible_user_id' => $responsibleUserId,
+            'remarks' => $remarks,
+            'tags' => $tags,
+            'custom_fields' => $customFields,
+            'marketing_mails_consent' => $marketingMailsConsent,
+        ]);
+    }
+
     public function addNote(CompanyId $companyId, string $title) : void
     {
         $this->connection->makeV1Request(
