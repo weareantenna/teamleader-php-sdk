@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Antenna\TeamleaderSDK;
 
 use Antenna\TeamleaderSDK\Resources\Companies;
+use Antenna\TeamleaderSDK\Resources\Contacts;
 
 class Teamleader
 {
@@ -24,5 +25,10 @@ class Teamleader
     public function companies() : Companies
     {
         return new Companies($this->connection);
+    }
+
+    public function contacts() : Contacts
+    {
+        return new Contacts($this->connection);
     }
 }
