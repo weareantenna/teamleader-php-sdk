@@ -1,0 +1,27 @@
+{
+    "name": "weareantenna/teamleader",
+    "description": "Teamleader PHP SDK that unifies API V1 and V2.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Antenna",
+            "email": "info@weareantenna.be"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.5",
+        "teamleadercrm/uuidifier": "^1.4",
+        "doctrine/coding-standard": "6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Antenna\\TeamleaderSDK\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "url": "git@github.com:teamleadercrm/uuidifier.git",
+            "type": "git"
+        }
+    ]
+}
