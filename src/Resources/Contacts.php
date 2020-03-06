@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace Antenna\TeamleaderSDK\Resources;
 
-use Antenna\TeamleaderSDK\Connection;
 use Antenna\TeamleaderSDK\Models\Contact;
 use Antenna\TeamleaderSDK\Models\ContactId;
+use Antenna\TeamleaderSDK\Teamleader;
 use function json_decode;
 use function time;
 
 class Contacts
 {
-    /** @var Connection */
-    private $connection;
+    /** @var Teamleader */
+    private $teamleader;
 
-    public function __construct(Connection $connection)
+    public function __construct(Teamleader $teamleader)
     {
-        $this->connection = $connection;
+        $this->teamleader = $teamleader;
     }
 
     public function getById(ContactId $id) : Contact
     {
-        $response = $this->connection->makeV2Request('contacts.info', ['id' => $id->toV2()]);
+        $response = $this->teamleader->makeV2Request('contacts.info', ['id' => $id->toV2()]);
 
         return new Contact(json_decode((string) $response->getBody(), true)['data']);
     }
@@ -34,7 +34,7 @@ class Contacts
      */
     public function list(array $filter = []) : array
     {
-        $response = $this->connection->makeV2Request('contacts.list', ['filter' => $filter]);
+        $response = $this->teamleader->makeV2Request('contacts.list', ['filter' => $filter]);
 
         $json = json_decode((string) $response->getBody(), true);
 
@@ -102,7 +102,7 @@ class Contacts
 
     public function addNote(ContactId $contactId, string $title) : void
     {
-        $this->connection->makeV1Request(
+        $this->teamleader->makeV1Request(
             'addNote.php',
             [
                 'object_type' => 'contact',
