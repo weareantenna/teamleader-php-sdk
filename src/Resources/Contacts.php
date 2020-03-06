@@ -24,13 +24,9 @@ class Contacts
 
     public function getById(ContactId $id) : Contact
     {
-        $contacts = $this->list(['ids' => [$id->toV2()]]);
+        $response = $this->connection->makeV2Request('contacts.info', ['id' => $id->toV2()]);
 
-        if (count($contacts) === 1) {
-            return $contacts[0];
-        }
-
-        throw new Exception('uhoh');
+        return new Contact(json_decode((string) $response->getBody(), true)['data']);
     }
 
     /**
