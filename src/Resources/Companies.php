@@ -7,8 +7,6 @@ namespace Antenna\TeamleaderSDK\Resources;
 use Antenna\TeamleaderSDK\Connection;
 use Antenna\TeamleaderSDK\Models\Company;
 use Antenna\TeamleaderSDK\Models\CompanyId;
-use Exception;
-use function count;
 use function json_decode;
 use function time;
 
@@ -24,13 +22,11 @@ class Companies
 
     public function getById(CompanyId $id) : Company
     {
-        $companies = $this->list(['ids' => [$id->toV2()]]);
+        $response = $this->connection->makeV2Request('companies.info', ['id' => $id->toV2()]);
 
-        if (count($companies) === 1) {
-            return $companies[0];
-        }
+        $json = json_decode((string) $response->getBody(), true);
 
-        throw new Exception('uhoh');
+        return new Company($json['data']);
     }
 
     /**
