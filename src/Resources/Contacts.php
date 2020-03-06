@@ -7,8 +7,6 @@ namespace Antenna\TeamleaderSDK\Resources;
 use Antenna\TeamleaderSDK\Connection;
 use Antenna\TeamleaderSDK\Models\Contact;
 use Antenna\TeamleaderSDK\Models\ContactId;
-use Exception;
-use function count;
 use function json_decode;
 use function time;
 

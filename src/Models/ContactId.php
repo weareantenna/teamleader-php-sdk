@@ -6,7 +6,7 @@ namespace Antenna\TeamleaderSDK\Models;
 
 final class ContactId extends Id
 {
-    protected static function getPrefix(): string
+    protected static function getPrefix() : string
     {
         return 'ContactId';
     }

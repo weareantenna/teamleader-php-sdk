@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Antenna\TeamleaderSDK\Models;
 
 use Ramsey\Uuid\Uuid;
