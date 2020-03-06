@@ -72,7 +72,7 @@ class Contacts
         ?array $custom_fields = [],
         ?bool $marketing_mails_consent = false
     ) : void {
-        $response = $this->connection->makeV2Request('contacts.add', [
+        $this->connection->makeV2Request('contacts.add', [
             'last_name' => $lastName,
             'first_name' => $first_name,
             'emails' => $emails,
@@ -90,6 +90,13 @@ class Contacts
             'tags' => $tags,
             'custom_fields' => $custom_fields,
             'marketing_mails_consent' => $marketing_mails_consent
+        ]);
+    }
+
+    public function delete(ContactId $contactId) : void
+    {
+        $this->connection->makeV2Request('contacts.delete', [
+            'id' => $contactId->toV2(),
         ]);
     }
 
