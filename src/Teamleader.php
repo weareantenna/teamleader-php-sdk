@@ -16,6 +16,11 @@ class Teamleader
         $this->connection = $connection;
     }
 
+    public function connection() : Connection
+    {
+        return $this->connection;
+    }
+
     public function companies() : Companies
     {
         return new Companies($this->connection);
