@@ -77,7 +77,7 @@ class Companies
         ?array $customFields = [],
         bool $marketingMailsConsent = false
     ) : void {
-        $response = $this->connection->makeV2Request('companies.add', [
+        $this->connection->makeV2Request('companies.add', [
             'name' => $name,
             'business_type_id' => $businessTypeId,
             'vat_number' => $vatNumber,
@@ -94,6 +94,13 @@ class Companies
             'tags' => $tags,
             'custom_fields' => $customFields,
             'marketing_mails_consent' => $marketingMailsConsent,
+        ]);
+    }
+
+    public function delete(CompanyId $companyId) : void
+    {
+        $this->connection->makeV2Request('companies.delete', [
+            'id' => $companyId->toV2(),
         ]);
     }
 
