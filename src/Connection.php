@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Antenna\TeamleaderSDK;
 
 use GuzzleHttp\Client;
+use Psr\Http\Message\ResponseInterface;
 use function array_merge;
 
 final class Connection
@@ -34,7 +35,7 @@ final class Connection
         $this->apiV2ClientSecret = $apiV2ClientSecret;
     }
 
-    public function makeV1Request(string $uri, array $body) : void
+    public function makeV1Request(string $uri, array $body) : ResponseInterface
     {
          $formParams = array_merge(
              [
@@ -44,7 +45,7 @@ final class Connection
              $body
          );
 
-         $this->client->request('POST', 'https://app.teamleader.eu/api/' . $uri, ['form_params' => $formParams]);
+         return $this->client->request('POST', 'https://app.teamleader.eu/api/' . $uri, ['form_params' => $formParams]);
     }
 
     public function send($request) : void
