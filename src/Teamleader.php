@@ -57,7 +57,7 @@ class Teamleader
             $body
         );
 
-        return $this->client->request('POST', 'https://app.teamleader.eu/api/' . $uri, ['form_params' => $formParams]);
+        return $this->client->request('POST', 'https://focus.teamleader.eu/api/' . $uri, ['form_params' => $formParams]);
     }
 
     /**
@@ -65,7 +65,7 @@ class Teamleader
      */
     public function makeV2Request(string $uri, array $body = []) : ResponseInterface
     {
-        return $this->client->request('POST', 'https://api.teamleader.eu/' . $uri, [
+        return $this->client->request('POST', 'https://api.focus.teamleader.eu/' . $uri, [
             'json' => $body,
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->accessToken,
@@ -100,7 +100,7 @@ class Teamleader
             $params['state'] = $state;
         }
 
-        return 'https://app.teamleader.eu/oauth2/authorize?'
+        return 'https://focus.teamleader.eu/oauth2/authorize?'
             . http_build_query($params);
     }
 }
